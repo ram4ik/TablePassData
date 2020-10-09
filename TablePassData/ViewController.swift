@@ -90,6 +90,13 @@ extension ViewController: UITableViewDelegate {
     func filterRegions(bankLocation: [BankLocations], by region: String) -> [BankLocations] {
             return bankLocation.filter { $0.r == region }
         }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = selectedRegion.rawValue.capitalized
+        label.backgroundColor = UIColor.lightGray
+        return label
+    }
 }
 
 extension ViewController: UITableViewDataSource { 
