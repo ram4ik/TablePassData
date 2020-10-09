@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var refreshControl = UIRefreshControl()
+    
     private var bankLocations: [BankLocations] = []
     private var regions = [String]()
     private var selectedRegion = BankRegions.estonia
@@ -20,12 +22,21 @@ class ViewController: UIViewController {
         return table
     }()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
         self.getData()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        self.getData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -60,6 +71,8 @@ class ViewController: UIViewController {
             self.bankLocations = bankLocations
             self.tableView.reloadData()
         }
+        
+        refreshControl.endRefreshing()
     }
 }
 
