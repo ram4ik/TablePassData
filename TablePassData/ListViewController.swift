@@ -45,7 +45,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         cell.textLabel?.text = items[indexPath.row].n
         cell.detailTextLabel?.text = items[indexPath.row].a
         cell.imageView!.image = UIImage(named: (items[indexPath.row].t == 0 ? "br" : (items[indexPath.row].t == 1 ? "a" : "r")))
