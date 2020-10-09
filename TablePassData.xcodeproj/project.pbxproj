@@ -13,6 +13,10 @@
 		958D1560253069D400A0389C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 958D155E253069D400A0389C /* Main.storyboard */; };
 		958D1562253069D600A0389C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 958D1561253069D600A0389C /* Assets.xcassets */; };
 		958D1565253069D600A0389C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 958D1563253069D600A0389C /* LaunchScreen.storyboard */; };
+		958D156E25306F8A00A0389C /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D156D25306F8A00A0389C /* ListViewController.swift */; };
+		958D157125307ADB00A0389C /* BankRegions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D157025307ADB00A0389C /* BankRegions.swift */; };
+		958D157425307B0800A0389C /* BankLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D157325307B0800A0389C /* BankLocations.swift */; };
+		958D157725307B3C00A0389C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D157625307B3C00A0389C /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		958D1561253069D600A0389C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		958D1564253069D600A0389C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		958D1566253069D600A0389C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		958D156D25306F8A00A0389C /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		958D157025307ADB00A0389C /* BankRegions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankRegions.swift; sourceTree = "<group>"; };
+		958D157325307B0800A0389C /* BankLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankLocations.swift; sourceTree = "<group>"; };
+		958D157625307B3C00A0389C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +71,10 @@
 				958D1561253069D600A0389C /* Assets.xcassets */,
 				958D1563253069D600A0389C /* LaunchScreen.storyboard */,
 				958D1566253069D600A0389C /* Info.plist */,
+				958D156D25306F8A00A0389C /* ListViewController.swift */,
+				958D157025307ADB00A0389C /* BankRegions.swift */,
+				958D157325307B0800A0389C /* BankLocations.swift */,
+				958D157625307B3C00A0389C /* NetworkManager.swift */,
 			);
 			path = TablePassData;
 			sourceTree = "<group>";
@@ -138,7 +150,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				958D155D253069D400A0389C /* ViewController.swift in Sources */,
+				958D157125307ADB00A0389C /* BankRegions.swift in Sources */,
+				958D157425307B0800A0389C /* BankLocations.swift in Sources */,
+				958D157725307B3C00A0389C /* NetworkManager.swift in Sources */,
 				958D1559253069D400A0389C /* AppDelegate.swift in Sources */,
+				958D156E25306F8A00A0389C /* ListViewController.swift in Sources */,
 				958D155B253069D400A0389C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
