@@ -15,9 +15,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         return table
     }()
     
-    private let items: [String]
+    private let items: [BankLocations]
     
-    init(items: [String]) {
+    init(items: [BankLocations]) {
         self.items = items
         super.init(nibName: nil, bundle: nil)
     }
@@ -46,7 +46,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = items[indexPath.row]
+        cell.textLabel?.text = items[indexPath.row].n
         return cell
     }
     
@@ -54,5 +54,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.deselectRow(at: indexPath, animated: true)
         print(items[indexPath.row])
     }
+    
+    
 
 }
