@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D8D725D2530B54B0018A90D /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D725C2530B54B0018A90D /* DetailsViewController.swift */; };
 		958D1559253069D400A0389C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D1558253069D400A0389C /* AppDelegate.swift */; };
 		958D155B253069D400A0389C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D155A253069D400A0389C /* SceneDelegate.swift */; };
 		958D155D253069D400A0389C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D155C253069D400A0389C /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D8D725C2530B54B0018A90D /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		958D1555253069D400A0389C /* TablePassData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TablePassData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		958D1558253069D400A0389C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		958D155A253069D400A0389C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,11 +69,12 @@
 				958D1558253069D400A0389C /* AppDelegate.swift */,
 				958D155A253069D400A0389C /* SceneDelegate.swift */,
 				958D155C253069D400A0389C /* ViewController.swift */,
+				958D156D25306F8A00A0389C /* ListViewController.swift */,
+				1D8D725C2530B54B0018A90D /* DetailsViewController.swift */,
 				958D155E253069D400A0389C /* Main.storyboard */,
 				958D1561253069D600A0389C /* Assets.xcassets */,
 				958D1563253069D600A0389C /* LaunchScreen.storyboard */,
 				958D1566253069D600A0389C /* Info.plist */,
-				958D156D25306F8A00A0389C /* ListViewController.swift */,
 				958D157025307ADB00A0389C /* BankRegions.swift */,
 				958D157325307B0800A0389C /* BankLocations.swift */,
 				958D157625307B3C00A0389C /* NetworkManager.swift */,
@@ -152,6 +155,7 @@
 				958D155D253069D400A0389C /* ViewController.swift in Sources */,
 				958D157125307ADB00A0389C /* BankRegions.swift in Sources */,
 				958D157425307B0800A0389C /* BankLocations.swift in Sources */,
+				1D8D725D2530B54B0018A90D /* DetailsViewController.swift in Sources */,
 				958D157725307B3C00A0389C /* NetworkManager.swift in Sources */,
 				958D1559253069D400A0389C /* AppDelegate.swift in Sources */,
 				958D156E25306F8A00A0389C /* ListViewController.swift in Sources */,

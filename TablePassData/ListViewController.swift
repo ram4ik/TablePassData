@@ -53,8 +53,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         print(items[indexPath.row])
+        
+        let dvc = DetailsViewController(items: items[indexPath.row])
+        dvc.title = items[indexPath.row].n
+        navigationController?.pushViewController(dvc, animated: true)
     }
-    
-    
-
 }
