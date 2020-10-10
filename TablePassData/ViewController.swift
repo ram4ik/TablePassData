@@ -11,8 +11,6 @@ class ViewController: UIViewController {
     
     var refreshControl = UIRefreshControl()
     
-    private var bankLocations: [BankLocations] = []
-    private var regions = [String]()
     private var bankLocationsEstonia: [BankLocations] = []
     private var regionsEstonia = [String]()
     private var bankLocationsLatvia: [BankLocations] = []
@@ -20,12 +18,10 @@ class ViewController: UIViewController {
     private var bankLocationsLithuania: [BankLocations] = []
     private var regionsLithuania = [String]()
     
-    private var selectedRegion = BankRegions.estonia
     private var selectedRegionEstonia = BankRegions.estonia
     private var selectedRegionLatvia = BankRegions.latvia
     private var selectedRegionLithuania = BankRegions.lithuania
     
-    private var regionUrl = ""
     private var regionUrlEstonia = "https://www.swedbank.ee/finder.json"
     private var regionUrlLatvia = "https://ib.swedbank.lv/finder.json"
     private var regionUrlLithuania = "https://ib.swedbank.lt/finder.json"
@@ -36,13 +32,10 @@ class ViewController: UIViewController {
         return table
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
-        self.getDataForEstonia()
-        self.getDataForLatvia()
-        self.getDataForLithuania()
+        refreshAllRegions()
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -54,12 +47,14 @@ class ViewController: UIViewController {
     }
     
     @objc func refresh(_ sender: AnyObject) {
-        self.getDataForEstonia()
-        self.getDataForLatvia()
-        self.getDataForLithuania()
+        refreshAllRegions()
     }
     
     @objc func update() {
+        refreshAllRegions()
+    }
+    
+    func refreshAllRegions() {
         self.getDataForEstonia()
         self.getDataForLatvia()
         self.getDataForLithuania()
@@ -68,37 +63,6 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
-    }
-    
-    func getRegionUrl() {
-        switch selectedRegion {
-        case .estonia:
-            regionUrl = "https://www.swedbank.ee/finder.json"
-        case .latvia:
-            regionUrl = "https://ib.swedbank.lv/finder.json"
-        case .lithuania:
-            regionUrl = "https://ib.swedbank.lt/finder.json"
-        }
-    }
-    
-    func getData() {
-        let nm = NetworkManger()
-        
-        getRegionUrl()
-        
-        nm.getPosts(regionName: selectedRegion, regionUrl: regionUrl) { (bankLocations, regions) in
-            self.regions = regions
-            self.bankLocations = bankLocations
-            self.tableView.reloadData()
-        }
-        
-        nm.retriveDataFromJsonFile(selectedRegion.rawValue) { (bankLocations, regions) in
-            self.regions = regions
-            self.bankLocations = bankLocations
-            self.tableView.reloadData()
-        }
-        
-        refreshControl.endRefreshing()
     }
     
     func getDataForEstonia() {
@@ -123,7 +87,7 @@ class ViewController: UIViewController {
             self.bankLocationsLatvia = bankLocations
             self.tableView.reloadData()
         }
-        nm.retriveDataFromJsonFile(selectedRegion.rawValue) { (bankLocations, regions) in
+        nm.retriveDataFromJsonFile(selectedRegionLatvia.rawValue) { (bankLocations, regions) in
             self.regionsLatvia = regions
             self.bankLocationsLatvia = bankLocations
             self.tableView.reloadData()
@@ -138,7 +102,7 @@ class ViewController: UIViewController {
             self.bankLocationsLithuania = bankLocations
             self.tableView.reloadData()
         }
-        nm.retriveDataFromJsonFile(selectedRegion.rawValue) { (bankLocations, regions) in
+        nm.retriveDataFromJsonFile(selectedRegionLithuania.rawValue) { (bankLocations, regions) in
             self.regionsLithuania = regions
             self.bankLocationsLithuania = bankLocations
             self.tableView.reloadData()
@@ -153,29 +117,25 @@ extension ViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
             let categoryEstonia = regionsEstonia[indexPath.row]
-            
             let vc = ListViewController(items: filterRegions(bankLocation: bankLocationsEstonia, by: categoryEstonia))
             vc.title = categoryEstonia
             navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.section == 1 {
             let categoryLatvia = regionsLatvia[indexPath.row]
-            
             let vc = ListViewController(items: filterRegions(bankLocation: bankLocationsLatvia, by: categoryLatvia))
             vc.title = categoryLatvia
             navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.section == 2 {
             let categoryLithuania = regionsLithuania[indexPath.row]
-            
             let vc = ListViewController(items: filterRegions(bankLocation: bankLocationsLithuania, by: categoryLithuania))
             vc.title = categoryLithuania
             navigationController?.pushViewController(vc, animated: true)
         }
-        
     }
     
     func filterRegions(bankLocation: [BankLocations], by region: String) -> [BankLocations] {
-            return bankLocation.filter { $0.r == region }
-        }
+        return bankLocation.filter { $0.r == region }
+    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
