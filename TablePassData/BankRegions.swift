@@ -10,5 +10,5 @@ import Foundation
 enum BankRegions: String, CaseIterable {
     case estonia
     case latvia
-    case lithuenia
+    case lithuania
 }
