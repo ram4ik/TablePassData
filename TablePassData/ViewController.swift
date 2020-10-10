@@ -33,9 +33,15 @@ class ViewController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
+        
+        let _ = Timer.scheduledTimer(timeInterval: 3600, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
     }
     
     @objc func refresh(_ sender: AnyObject) {
+        self.getData()
+    }
+    
+    @objc func update() {
         self.getData()
     }
     
