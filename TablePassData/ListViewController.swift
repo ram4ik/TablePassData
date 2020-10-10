@@ -50,6 +50,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.textLabel?.text = items[indexPath.row].n
         cell.detailTextLabel?.text = items[indexPath.row].a
         cell.imageView!.image = UIImage(named: (items[indexPath.row].t == 0 ? "br" : (items[indexPath.row].t == 1 ? "a" : "r")))
+        cell.imageView?.layer.cornerRadius = 25.0
+        cell.imageView?.layer.masksToBounds = true
         cell.accessoryType = .disclosureIndicator
         return cell
     }
