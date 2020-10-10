@@ -24,8 +24,8 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         
-        let type = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
-        type.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 1, y: (UIScreen.main.bounds.height / 2) - 200)
+        let type = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 50))
+        type.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 0.7, y: (UIScreen.main.bounds.height / 2) - 200)
         type.textAlignment = .right
         type.text = "Type"
         type.font = UIFont.systemFont(ofSize: 12.0)
@@ -39,8 +39,8 @@ class DetailsViewController: UIViewController {
         typeValue.text = (items.t == 0 ? "Branch" : (items.t == 1 ? "ATM" : "BNA"))
         self.view.addSubview(typeValue)
         
-        let name = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
-        name.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 1, y: (UIScreen.main.bounds.height / 2) - 150)
+        let name = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 50))
+        name.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 0.7, y: (UIScreen.main.bounds.height / 2) - 150)
         name.textAlignment = .right
         name.text = "NAME"
         name.font = UIFont.systemFont(ofSize: 12.0)
@@ -54,8 +54,8 @@ class DetailsViewController: UIViewController {
         nameValue.text = items.n
         self.view.addSubview(nameValue)
         
-        let address = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
-        address.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 1, y: (UIScreen.main.bounds.height / 2) - 100)
+        let address = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 50))
+        address.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 0.7, y: (UIScreen.main.bounds.height / 2) - 100)
         address.textAlignment = .right
         address.text = "ADDRESS"
         address.font = UIFont.systemFont(ofSize: 12.0)
@@ -69,8 +69,8 @@ class DetailsViewController: UIViewController {
         addressValue.text = items.a
         self.view.addSubview(addressValue)
         
-        let region = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
-        region.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 1, y: (UIScreen.main.bounds.height / 2) - 50)
+        let region = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 50))
+        region.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 0.7, y: (UIScreen.main.bounds.height / 2) - 50)
         region.textAlignment = .right
         region.text = "REGION"
         region.font = UIFont.systemFont(ofSize: 12.0)
@@ -85,8 +85,8 @@ class DetailsViewController: UIViewController {
         self.view.addSubview(regionValue)
         
         if let availabilityData = items.av {
-            let availability = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 150))
-            availability.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 1, y: (UIScreen.main.bounds.height / 2) + 50)
+            let availability = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 150))
+            availability.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 0.7, y: (UIScreen.main.bounds.height / 2) + 50)
             availability.textAlignment = .right
             availability.text = "AVAILABILITY"
             availability.font = UIFont.systemFont(ofSize: 12.0)
@@ -102,15 +102,15 @@ class DetailsViewController: UIViewController {
         }
         
         if let infoData = items.i {
-            let info = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
-            info.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 1, y: (UIScreen.main.bounds.height / 2) + 150)
+            let info = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 150))
+            info.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 0.7, y: (UIScreen.main.bounds.height / 2) + 150)
             info.textAlignment = .right
             info.text = "INFO"
             info.font = UIFont.systemFont(ofSize: 12.0)
             info.textColor = UIColor.secondaryLabel
             self.view.addSubview(info)
             
-            let infoValue = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+            let infoValue = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 150))
             infoValue.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 3 - 20, y: (UIScreen.main.bounds.height / 2) + 150)
             infoValue.textAlignment = .left
             infoValue.numberOfLines = 0
