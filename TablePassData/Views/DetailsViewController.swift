@@ -7,9 +7,21 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController {
+class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    private let tableView: UITableView = {
+        let table = UITableView(frame: .zero, style: .grouped)
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        table.rowHeight = UITableView.automaticDimension
+        table.estimatedRowHeight = UITableView.automaticDimension
+        return table
+    }()
     
     private let items: BankLocations
+    
+    private var details = [String]()
+    private var infoDetails = [String]()
     
     init(items: BankLocations) {
         self.items = items
@@ -22,101 +34,95 @@ class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createArrayWithDetails()
         view.backgroundColor = .systemBackground
+        view.addSubview(tableView)
+
+        tableView.delegate = self
+        tableView.dataSource = self
         
-        let type = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 50))
-        type.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 0.7, y: (UIScreen.main.bounds.height / 2) - 200)
-        type.textAlignment = .right
-        type.text = "Type"
-        type.font = UIFont.systemFont(ofSize: 12.0)
-        type.textColor = UIColor.secondaryLabel
-        self.view.addSubview(type)
-        
-        let typeValue = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        typeValue.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 3 - 20, y: (UIScreen.main.bounds.height / 2) - 200)
-        typeValue.textAlignment = .left
-        typeValue.numberOfLines = 0
-        typeValue.text = (items.t == 0 ? "Branch" : (items.t == 1 ? "ATM" : "BNA"))
-        self.view.addSubview(typeValue)
-        
-        let name = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 50))
-        name.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 0.7, y: (UIScreen.main.bounds.height / 2) - 150)
-        name.textAlignment = .right
-        name.text = "NAME"
-        name.font = UIFont.systemFont(ofSize: 12.0)
-        name.textColor = UIColor.secondaryLabel
-        self.view.addSubview(name)
-        
-        let nameValue = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        nameValue.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 3 - 20, y: (UIScreen.main.bounds.height / 2) - 150)
-        nameValue.textAlignment = .left
-        nameValue.numberOfLines = 0
-        nameValue.text = items.n
-        self.view.addSubview(nameValue)
-        
-        let address = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 50))
-        address.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 0.7, y: (UIScreen.main.bounds.height / 2) - 100)
-        address.textAlignment = .right
-        address.text = "ADDRESS"
-        address.font = UIFont.systemFont(ofSize: 12.0)
-        address.textColor = UIColor.secondaryLabel
-        self.view.addSubview(address)
-        
-        let addressValue = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        addressValue.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 3 - 20, y: (UIScreen.main.bounds.height / 2) - 100)
-        addressValue.textAlignment = .left
-        addressValue.numberOfLines = 0
-        addressValue.text = items.a
-        self.view.addSubview(addressValue)
-        
-        let region = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 50))
-        region.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 0.7, y: (UIScreen.main.bounds.height / 2) - 50)
-        region.textAlignment = .right
-        region.text = "REGION"
-        region.font = UIFont.systemFont(ofSize: 12.0)
-        region.textColor = UIColor.secondaryLabel
-        self.view.addSubview(region)
-        
-        let regionValue = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
-        regionValue.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 3 - 20, y: (UIScreen.main.bounds.height / 2) - 50)
-        regionValue.textAlignment = .left
-        regionValue.numberOfLines = 0
-        regionValue.text = items.r
-        self.view.addSubview(regionValue)
-        
-        if let availabilityData = items.av {
-            let availability = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 150))
-            availability.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 0.7, y: (UIScreen.main.bounds.height / 2) + 50)
-            availability.textAlignment = .right
-            availability.text = "AVAILABILITY"
-            availability.font = UIFont.systemFont(ofSize: 12.0)
-            availability.textColor = UIColor.secondaryLabel
-            self.view.addSubview(availability)
-            
-            let availabilityValue = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 150))
-            availabilityValue.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 3 - 20, y: (UIScreen.main.bounds.height / 2) + 50)
-            availabilityValue.textAlignment = .left
-            availabilityValue.numberOfLines = 0
-            availabilityValue.text = availabilityData
-            self.view.addSubview(availabilityValue)
-        }
-        
-        if let infoData = items.i {
-            let info = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 150))
-            info.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 0.7, y: (UIScreen.main.bounds.height / 2) + 150)
-            info.textAlignment = .right
-            info.text = "INFO"
-            info.font = UIFont.systemFont(ofSize: 12.0)
-            info.textColor = UIColor.secondaryLabel
-            self.view.addSubview(info)
-            
-            let infoValue = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 150))
-            infoValue.center = CGPoint(x: UIScreen.main.bounds.width / 4 * 3 - 20, y: (UIScreen.main.bounds.height / 2) + 150)
-            infoValue.textAlignment = .left
-            infoValue.numberOfLines = 0
-            infoValue.text = infoData
-            self.view.addSubview(infoValue)
-        }
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 470
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        tableView.frame = view.bounds
+    }
+    
+    private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return details.count
+        } else if section == 1 {
+            return infoDetails.count
+        }
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell = UITableViewCell(style: .value2, reuseIdentifier: "cell")
+        cell.detailTextLabel?.text = indexPath.section == 0 ? details[indexPath.row] : infoDetails[indexPath.row]
+        cell.detailTextLabel?.numberOfLines = 0
+        cell.detailTextLabel?.lineBreakMode = .byWordWrapping
+        cell.detailTextLabel?.sizeToFit()
+        cell.detailTextLabel?.textColor = UIColor.secondaryLabel
+        cell.textLabel?.text = getTitleText(titleIndex: indexPath.row, sectionIndex: indexPath.section)
+        cell.textLabel?.textColor = UIColor.secondaryLabel
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 12.0)
+        
+        return cell
+    }
+    
+    private func getTitleText(titleIndex: Int, sectionIndex: Int) -> String {
+        var titleText = ""
+        if sectionIndex == 0 {
+            if titleIndex == 0 {
+                titleText = "TYPE"
+            } else if titleIndex == 1 {
+                titleText = "NAME"
+            } else if titleIndex == 2 {
+                titleText = "ADDRESS"
+            } else if titleIndex == 3 {
+                titleText = "REGION"
+            }
+        } else if sectionIndex == 1 {
+            if titleIndex == 0 {
+                titleText = "AVAILABILITY"
+            } else if titleIndex == 1 {
+                titleText = "INFO"
+            }
+        }
+        return titleText
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func createArrayWithDetails() {
+        details = [
+            (items.t == 0 ? "Branch" : (items.t == 1 ? "ATM" : "BNA")),
+            items.n,
+            items.a
+        ]
+        
+        if let r = items.r {
+            details.append(r)
+        }
+        
+        if let av = items.av {
+            infoDetails.append(av)
+        }
+        
+        if let i = items.i {
+            infoDetails.append(i)
+        }
+    }
 }
