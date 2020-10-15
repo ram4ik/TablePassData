@@ -21,11 +21,7 @@ class ViewController: UIViewController {
     private var selectedRegionEstonia = Country.estonia
     private var selectedRegionLatvia = Country.latvia
     private var selectedRegionLithuania = Country.lithuania
-    
-    private var regionUrlEstonia = "https://www.swedbank.ee/finder.json"
-    private var regionUrlLatvia = "https://ib.swedbank.lv/finder.json"
-    private var regionUrlLithuania = "https://ib.swedbank.lt/finder.json"
-    
+        
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -67,7 +63,7 @@ class ViewController: UIViewController {
     
     func getDataForEstonia() {
         let nm = NetworkManger()
-        nm.getPosts(regionName: selectedRegionEstonia, regionUrl: regionUrlEstonia) { (bankLocations, regions) in
+        nm.getPosts(regionName: selectedRegionEstonia, regionUrl: Country.estonia.rawValue) { (bankLocations, regions) in
             self.regionsEstonia = regions
             self.bankLocationsEstonia = bankLocations
             self.tableView.reloadData()
@@ -82,7 +78,7 @@ class ViewController: UIViewController {
     
     func getDataForLatvia() {
         let nm = NetworkManger()
-        nm.getPosts(regionName: selectedRegionLatvia, regionUrl: regionUrlLatvia) { (bankLocations, regions) in
+        nm.getPosts(regionName: selectedRegionLatvia, regionUrl: Country.latvia.rawValue) { (bankLocations, regions) in
             self.regionsLatvia = regions
             self.bankLocationsLatvia = bankLocations
             self.tableView.reloadData()
@@ -97,7 +93,7 @@ class ViewController: UIViewController {
     
     func getDataForLithuania() {
         let nm = NetworkManger()
-        nm.getPosts(regionName: selectedRegionLithuania, regionUrl: regionUrlLithuania) { (bankLocations, regions) in
+        nm.getPosts(regionName: selectedRegionLithuania, regionUrl: Country.lithuania.rawValue) { (bankLocations, regions) in
             self.regionsLithuania = regions
             self.bankLocationsLithuania = bankLocations
             self.tableView.reloadData()

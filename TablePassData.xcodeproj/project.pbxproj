@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D8D725D2530B54B0018A90D /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D725C2530B54B0018A90D /* DetailsViewController.swift */; };
+		953EFA3D2538404C009A82AE /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EFA3C2538404C009A82AE /* NetworkRequest.swift */; };
 		958D1559253069D400A0389C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D1558253069D400A0389C /* AppDelegate.swift */; };
 		958D155B253069D400A0389C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D155A253069D400A0389C /* SceneDelegate.swift */; };
 		958D155D253069D400A0389C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D155C253069D400A0389C /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		1D8D725C2530B54B0018A90D /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		953EFA3C2538404C009A82AE /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		958D1555253069D400A0389C /* TablePassData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TablePassData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		958D1558253069D400A0389C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		958D155A253069D400A0389C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				958D157625307B3C00A0389C /* NetworkManager.swift */,
+				953EFA3C2538404C009A82AE /* NetworkRequest.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				958D157725307B3C00A0389C /* NetworkManager.swift in Sources */,
 				958D1559253069D400A0389C /* AppDelegate.swift in Sources */,
 				958D156E25306F8A00A0389C /* ListViewController.swift in Sources */,
+				953EFA3D2538404C009A82AE /* NetworkRequest.swift in Sources */,
 				958D155B253069D400A0389C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
