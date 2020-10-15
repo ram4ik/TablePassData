@@ -9,16 +9,14 @@ import Foundation
 
 class NetworkManger {
     
-    func getPosts(regionName: Country, regionUrl: String, completion: @escaping ([BankLocations], Array<String>) -> ()) {
-        
-        guard let url = URL(string: regionUrl) else { return }
+    func getPosts(country: Country, url: URL, completion: @escaping ([BankLocations], Array<String>) -> ()) {
         
         URLSession.shared.dataTask(with: url) { (data, _, _) in
             guard let data = data else { return }
             
             let posts = try! JSONDecoder().decode([BankLocations].self, from: data)
             
-            self.saveJsonFile(regionName.rawValue, data: data)
+            self.saveJsonFile(country.name, data: data)
             
             let regionList: Array<String> = self.getAllRegions(bankLocations: posts)
             

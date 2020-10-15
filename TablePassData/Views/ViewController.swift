@@ -18,10 +18,6 @@ class ViewController: UIViewController {
     private var bankLocationsLithuania: [BankLocations] = []
     private var regionsLithuania = [String]()
     
-    private var selectedRegionEstonia = Country.estonia
-    private var selectedRegionLatvia = Country.latvia
-    private var selectedRegionLithuania = Country.lithuania
-        
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -63,12 +59,12 @@ class ViewController: UIViewController {
     
     func getDataForEstonia() {
         let nm = NetworkManger()
-        nm.getPosts(regionName: selectedRegionEstonia, regionUrl: Country.estonia.rawValue) { (bankLocations, regions) in
+        nm.getPosts(country: .estonia, url: Country.estonia.url) { (bankLocations, regions) in
             self.regionsEstonia = regions
             self.bankLocationsEstonia = bankLocations
             self.tableView.reloadData()
         }
-        nm.retriveDataFromJsonFile(selectedRegionEstonia.rawValue) { (bankLocations, regions) in
+        nm.retriveDataFromJsonFile(Country.estonia.name) { (bankLocations, regions) in
             self.regionsEstonia = regions
             self.bankLocationsEstonia = bankLocations
             self.tableView.reloadData()
@@ -78,12 +74,12 @@ class ViewController: UIViewController {
     
     func getDataForLatvia() {
         let nm = NetworkManger()
-        nm.getPosts(regionName: selectedRegionLatvia, regionUrl: Country.latvia.rawValue) { (bankLocations, regions) in
+        nm.getPosts(country: .latvia, url: Country.latvia.url) { (bankLocations, regions) in
             self.regionsLatvia = regions
             self.bankLocationsLatvia = bankLocations
             self.tableView.reloadData()
         }
-        nm.retriveDataFromJsonFile(selectedRegionLatvia.rawValue) { (bankLocations, regions) in
+        nm.retriveDataFromJsonFile(Country.latvia.name) { (bankLocations, regions) in
             self.regionsLatvia = regions
             self.bankLocationsLatvia = bankLocations
             self.tableView.reloadData()
@@ -93,12 +89,12 @@ class ViewController: UIViewController {
     
     func getDataForLithuania() {
         let nm = NetworkManger()
-        nm.getPosts(regionName: selectedRegionLithuania, regionUrl: Country.lithuania.rawValue) { (bankLocations, regions) in
+        nm.getPosts(country: .lithuania, url: Country.lithuania.url) { (bankLocations, regions) in
             self.regionsLithuania = regions
             self.bankLocationsLithuania = bankLocations
             self.tableView.reloadData()
         }
-        nm.retriveDataFromJsonFile(selectedRegionLithuania.rawValue) { (bankLocations, regions) in
+        nm.retriveDataFromJsonFile(Country.lithuania.name) { (bankLocations, regions) in
             self.regionsLithuania = regions
             self.bankLocationsLithuania = bankLocations
             self.tableView.reloadData()
@@ -136,15 +132,15 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         if section == 0 {
-            label.text = selectedRegionEstonia.rawValue.capitalized
+            label.text = Country.estonia.name
             label.backgroundColor = UIColor.lightGray
             return label
         } else if section == 1 {
-            label.text = selectedRegionLatvia.rawValue.capitalized
+            label.text = Country.latvia.name
             label.backgroundColor = UIColor.lightGray
             return label
         } else if section == 2 {
-            label.text = selectedRegionLithuania.rawValue.capitalized
+            label.text = Country.lithuania.name
             label.backgroundColor = UIColor.lightGray
             return label
         }
