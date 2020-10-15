@@ -11,11 +11,11 @@ class RegionsViewController: UIViewController {
     
     var refreshControl = UIRefreshControl()
     
-    private var bankLocationsEstonia: [BankLocations] = []
+    private var bankLocationsEstonia: [BankPoint] = []
     private var regionsEstonia = [String]()
-    private var bankLocationsLatvia: [BankLocations] = []
+    private var bankLocationsLatvia: [BankPoint] = []
     private var regionsLatvia = [String]()
-    private var bankLocationsLithuania: [BankLocations] = []
+    private var bankLocationsLithuania: [BankPoint] = []
     private var regionsLithuania = [String]()
     
     private let tableView: UITableView = {
@@ -125,7 +125,7 @@ extension RegionsViewController: UITableViewDelegate {
         }
     }
     
-    func filterRegions(bankLocation: [BankLocations], by region: String) -> [BankLocations] {
+    func filterRegions(bankLocation: [BankPoint], by region: String) -> [BankPoint] {
         return bankLocation.filter { $0.r == region }
     }
     

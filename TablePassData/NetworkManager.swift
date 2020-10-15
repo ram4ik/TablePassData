@@ -15,12 +15,12 @@ class Network {
         self.session = session
     }
     
-    func getPosts(country: Country, url: URL, completion: @escaping ([BankLocations], Array<String>) -> ()) {
+    func getPosts(country: Country, url: URL, completion: @escaping ([BankPoint], Array<String>) -> ()) {
         
         session.dataTask(with: url) { (data, _, _) in
             guard let data = data else { return }
             
-            let posts = try! JSONDecoder().decode([BankLocations].self, from: data)
+            let posts = try! JSONDecoder().decode([BankPoint].self, from: data)
             
             self.saveJsonFile(country.name, data: data)
             
@@ -32,7 +32,7 @@ class Network {
         }.resume()
     }
     
-    func getAllRegions(bankLocations: [BankLocations]) -> Array<String> {
+    func getAllRegions(bankLocations: [BankPoint]) -> Array<String> {
         
         var allRegionsList = [String]()
         
@@ -56,7 +56,7 @@ class Network {
         }
     }
     
-    func retriveDataFromJsonFile(_ name: String, completion: @escaping ([BankLocations], Array<String>) ->()) {
+    func retriveDataFromJsonFile(_ name: String, completion: @escaping ([BankPoint], Array<String>) ->()) {
         guard let documentsDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         let fileUrl = documentsDirectoryUrl.appendingPathComponent(name + ".json")
         
@@ -64,7 +64,7 @@ class Network {
         
         do {
             let data = try Data(contentsOf: fileUrl, options: [])
-            let posts = try! JSONDecoder().decode([BankLocations].self, from: data)
+            let posts = try! JSONDecoder().decode([BankPoint].self, from: data)
             
             let regionList: Array<String> = self.getAllRegions(bankLocations: posts)
             

@@ -18,12 +18,12 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
         return table
     }()
     
-    private let items: BankLocations
+    private let items: BankPoint
     
     private var details = [String]()
     private var infoDetails = [String]()
     
-    init(items: BankLocations) {
+    init(items: BankPoint) {
         self.items = items
         super.init(nibName: nil, bundle: nil)
     }

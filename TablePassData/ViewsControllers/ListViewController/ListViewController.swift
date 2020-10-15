@@ -15,9 +15,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         return table
     }()
     
-    private let items: [BankLocations]
+    private let items: [BankPoint]
     
-    init(items: [BankLocations]) {
+    init(items: [BankPoint]) {
         self.items = items
         super.init(nibName: nil, bundle: nil)
     }

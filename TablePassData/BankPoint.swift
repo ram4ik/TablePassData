@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BankLocations: Codable, Identifiable {
+struct BankPoint: Codable, Identifiable {
     let id = UUID()
     let t: Int
     let n, a: String
