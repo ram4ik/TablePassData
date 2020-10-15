@@ -58,14 +58,14 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
-		1D60CF3225324946005E47B8 /* Views */ = {
+		1D60CF3225324946005E47B8 /* ViewsControllers */ = {
 			isa = PBXGroup;
 			children = (
-				958D155C253069D400A0389C /* RegionsViewController.swift */,
-				958D156D25306F8A00A0389C /* ListViewController.swift */,
-				1D8D725C2530B54B0018A90D /* DetailsViewController.swift */,
+				953EFA432538561E009A82AE /* DetailsViewController */,
+				953EFA4225385605009A82AE /* ListViewController */,
+				953EFA41253855F0009A82AE /* RegionsViewController */,
 			);
-			path = Views;
+			path = ViewsControllers;
 			sourceTree = "<group>";
 		};
 		1D60CF342532499D005E47B8 /* Models */ = {
@@ -75,6 +75,30 @@
 				958D157025307ADB00A0389C /* Country.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		953EFA41253855F0009A82AE /* RegionsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				958D155C253069D400A0389C /* RegionsViewController.swift */,
+			);
+			name = RegionsViewController;
+			sourceTree = "<group>";
+		};
+		953EFA4225385605009A82AE /* ListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				958D156D25306F8A00A0389C /* ListViewController.swift */,
+			);
+			path = ListViewController;
+			sourceTree = "<group>";
+		};
+		953EFA432538561E009A82AE /* DetailsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1D8D725C2530B54B0018A90D /* DetailsViewController.swift */,
+			);
+			name = DetailsViewController;
 			sourceTree = "<group>";
 		};
 		958D154C253069D400A0389C = {
@@ -97,7 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				1D60CF342532499D005E47B8 /* Models */,
-				1D60CF3225324946005E47B8 /* Views */,
+				1D60CF3225324946005E47B8 /* ViewsControllers */,
 				1D60CF30253248F7005E47B8 /* Services */,
 				958D1558253069D400A0389C /* AppDelegate.swift */,
 				958D155A253069D400A0389C /* SceneDelegate.swift */,
