@@ -9,7 +9,7 @@ import Foundation
 
 class NetworkManger {
     
-    func getPosts(regionName: BankRegions, regionUrl: String, completion: @escaping ([BankLocations], Array<String>) -> ()) {
+    func getPosts(regionName: Country, regionUrl: String, completion: @escaping ([BankLocations], Array<String>) -> ()) {
         
         guard let url = URL(string: regionUrl) else { return }
         

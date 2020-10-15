@@ -18,9 +18,9 @@ class ViewController: UIViewController {
     private var bankLocationsLithuania: [BankLocations] = []
     private var regionsLithuania = [String]()
     
-    private var selectedRegionEstonia = BankRegions.estonia
-    private var selectedRegionLatvia = BankRegions.latvia
-    private var selectedRegionLithuania = BankRegions.lithuania
+    private var selectedRegionEstonia = Country.estonia
+    private var selectedRegionLatvia = Country.latvia
+    private var selectedRegionLithuania = Country.lithuania
     
     private var regionUrlEstonia = "https://www.swedbank.ee/finder.json"
     private var regionUrlLatvia = "https://ib.swedbank.lv/finder.json"
