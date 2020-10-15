@@ -58,7 +58,7 @@ class RegionsViewController: UIViewController {
     }
     
     func getDataForEstonia() {
-        let nm = NetworkManger()
+        let nm = Network()
         nm.getPosts(country: .estonia, url: Country.estonia.url) { (bankLocations, regions) in
             self.regionsEstonia = regions
             self.bankLocationsEstonia = bankLocations
@@ -73,7 +73,7 @@ class RegionsViewController: UIViewController {
     }
     
     func getDataForLatvia() {
-        let nm = NetworkManger()
+        let nm = Network()
         nm.getPosts(country: .latvia, url: Country.latvia.url) { (bankLocations, regions) in
             self.regionsLatvia = regions
             self.bankLocationsLatvia = bankLocations
@@ -88,7 +88,7 @@ class RegionsViewController: UIViewController {
     }
     
     func getDataForLithuania() {
-        let nm = NetworkManger()
+        let nm = Network()
         nm.getPosts(country: .lithuania, url: Country.lithuania.url) { (bankLocations, regions) in
             self.regionsLithuania = regions
             self.bankLocationsLithuania = bankLocations

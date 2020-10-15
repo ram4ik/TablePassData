@@ -7,11 +7,17 @@
 
 import Foundation
 
-class NetworkManger {
+class Network {
+    
+    let session: URLSession
+    
+    init(session: URLSession = .shared) {
+        self.session = session
+    }
     
     func getPosts(country: Country, url: URL, completion: @escaping ([BankLocations], Array<String>) -> ()) {
         
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
+        session.dataTask(with: url) { (data, _, _) in
             guard let data = data else { return }
             
             let posts = try! JSONDecoder().decode([BankLocations].self, from: data)
