@@ -90,7 +90,9 @@ extension RegionsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
+        let vc = ListViewController(items: sections[indexPath.section].regions[indexPath.row].points)
+        vc.title = sections[indexPath.section].regions[indexPath.row].name
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
