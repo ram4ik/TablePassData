@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1D8D725D2530B54B0018A90D /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D725C2530B54B0018A90D /* DetailsViewController.swift */; };
 		953EFA3D2538404C009A82AE /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EFA3C2538404C009A82AE /* NetworkRequest.swift */; };
+		953EFA4B25397759009A82AE /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EFA4A25397759009A82AE /* Request.swift */; };
+		953EFA4E253977BC009A82AE /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EFA4D253977BC009A82AE /* Api.swift */; };
+		953EFA5125397A89009A82AE /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EFA5025397A89009A82AE /* Region.swift */; };
 		958D1559253069D400A0389C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D1558253069D400A0389C /* AppDelegate.swift */; };
 		958D155B253069D400A0389C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D155A253069D400A0389C /* SceneDelegate.swift */; };
 		958D155D253069D400A0389C /* RegionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D155C253069D400A0389C /* RegionsViewController.swift */; };
@@ -24,6 +27,9 @@
 /* Begin PBXFileReference section */
 		1D8D725C2530B54B0018A90D /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		953EFA3C2538404C009A82AE /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		953EFA4A25397759009A82AE /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		953EFA4D253977BC009A82AE /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		953EFA5025397A89009A82AE /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		958D1555253069D400A0389C /* TablePassData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TablePassData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		958D1558253069D400A0389C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		958D155A253069D400A0389C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +60,8 @@
 			children = (
 				958D157625307B3C00A0389C /* NetworkManager.swift */,
 				953EFA3C2538404C009A82AE /* NetworkRequest.swift */,
+				953EFA4A25397759009A82AE /* Request.swift */,
+				953EFA4D253977BC009A82AE /* Api.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -61,9 +69,9 @@
 		1D60CF3225324946005E47B8 /* ViewsControllers */ = {
 			isa = PBXGroup;
 			children = (
+				953EFA41253855F0009A82AE /* RegionsViewController */,
 				953EFA4525385783009A82AE /* ListViewController */,
 				953EFA432538561E009A82AE /* DetailsViewController */,
-				953EFA41253855F0009A82AE /* RegionsViewController */,
 			);
 			path = ViewsControllers;
 			sourceTree = "<group>";
@@ -73,6 +81,7 @@
 			children = (
 				958D157325307B0800A0389C /* BankPoint.swift */,
 				958D157025307ADB00A0389C /* Country.swift */,
+				953EFA5025397A89009A82AE /* Region.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -206,10 +215,13 @@
 				958D155D253069D400A0389C /* RegionsViewController.swift in Sources */,
 				958D157125307ADB00A0389C /* Country.swift in Sources */,
 				958D157425307B0800A0389C /* BankPoint.swift in Sources */,
+				953EFA5125397A89009A82AE /* Region.swift in Sources */,
 				1D8D725D2530B54B0018A90D /* DetailsViewController.swift in Sources */,
 				958D157725307B3C00A0389C /* NetworkManager.swift in Sources */,
+				953EFA4E253977BC009A82AE /* Api.swift in Sources */,
 				958D1559253069D400A0389C /* AppDelegate.swift in Sources */,
 				958D156E25306F8A00A0389C /* ListViewController.swift in Sources */,
+				953EFA4B25397759009A82AE /* Request.swift in Sources */,
 				953EFA3D2538404C009A82AE /* NetworkRequest.swift in Sources */,
 				958D155B253069D400A0389C /* SceneDelegate.swift in Sources */,
 			);
