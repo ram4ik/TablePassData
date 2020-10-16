@@ -18,6 +18,9 @@ class RegionsViewController: UIViewController {
     private var bankLocationsLithuania: [BankPoint] = []
     private var regionsLithuania = [String]()
     
+    private var sections = [Section]()
+    private var network = Network()
+    
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -27,6 +30,7 @@ class RegionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
+        reloadData()
         refreshAllRegions()
         tableView.delegate = self
         tableView.dataSource = self
@@ -55,6 +59,18 @@ class RegionsViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
+    }
+    
+    func reloadData() {
+        let group = DispatchGroup()
+        sections.removeAll()
+        for country in Country.allCases {
+            group.enter()
+            network.getPosts(country: country, url: country.url) { (bankLocations, regions) in
+                self.sections.append(Section(country: country, regions: [Region(name: country.name, points: bankLocations)]))
+                group.leave()
+            }
+        }
     }
     
     func getDataForEstonia() {
@@ -130,45 +146,54 @@ extension RegionsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let label = UILabel()
+//        if section == 0 {
+//            label.text = Country.estonia.name
+//            label.backgroundColor = UIColor.lightGray
+//            return label
+//        } else if section == 1 {
+//            label.text = Country.latvia.name
+//            label.backgroundColor = UIColor.lightGray
+//            return label
+//        } else if section == 2 {
+//            label.text = Country.lithuania.name
+//            label.backgroundColor = UIColor.lightGray
+//            return label
+//        }
+//        return label
         let label = UILabel()
-        if section == 0 {
-            label.text = Country.estonia.name
-            label.backgroundColor = UIColor.lightGray
-            return label
-        } else if section == 1 {
-            label.text = Country.latvia.name
-            label.backgroundColor = UIColor.lightGray
-            return label
-        } else if section == 2 {
-            label.text = Country.lithuania.name
-            label.backgroundColor = UIColor.lightGray
-            return label
-        }
+        label.text = sections[section].country.name
+        label.backgroundColor = UIColor.lightGray
         return label
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return sections.count
     }
 }
 
 extension RegionsViewController: UITableViewDataSource { 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return regionsEstonia.count
-        } else if section == 1 {
-            return regionsLatvia.count
-        } else if section == 2 {
-            return regionsLithuania.count
-        }
-        return 1
+//        if section == 0 {
+//            return regionsEstonia.count
+//        } else if section == 1 {
+//            return regionsLatvia.count
+//        } else if section == 2 {
+//            return regionsLithuania.count
+//        }
+//        return 1
+        return sections[section].regions[0].points.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = indexPath.section == 0 ? regionsEstonia[indexPath.row] : (indexPath.section == 1 ? regionsLatvia[indexPath.row] : regionsLithuania[indexPath.row])
-        cell.accessoryType = .disclosureIndicator
+//        cell.textLabel?.text = indexPath.section == 0 ? regionsEstonia[indexPath.row] : (indexPath.section == 1 ? regionsLatvia[indexPath.row] : regionsLithuania[indexPath.row])
+//        cell.accessoryType = .disclosureIndicator
+//        return cell
+        
+        let district = sections[indexPath.section].regions[0].points[indexPath.row].r
+        cell.textLabel?.text = district ?? "N/A"
         return cell
     }
 }
