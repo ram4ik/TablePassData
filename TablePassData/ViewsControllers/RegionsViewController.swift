@@ -90,26 +90,7 @@ extension RegionsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-//        if indexPath.section == 0 {
-//            let categoryEstonia = regionsEstonia[indexPath.row]
-//            let vc = ListViewController(items: filterRegions(bankLocation: bankLocationsEstonia, by: categoryEstonia))
-//            vc.title = categoryEstonia
-//            navigationController?.pushViewController(vc, animated: true)
-//        } else if indexPath.section == 1 {
-//            let categoryLatvia = regionsLatvia[indexPath.row]
-//            let vc = ListViewController(items: filterRegions(bankLocation: bankLocationsLatvia, by: categoryLatvia))
-//            vc.title = categoryLatvia
-//            navigationController?.pushViewController(vc, animated: true)
-//        } else if indexPath.section == 2 {
-//            let categoryLithuania = regionsLithuania[indexPath.row]
-//            let vc = ListViewController(items: filterRegions(bankLocation: bankLocationsLithuania, by: categoryLithuania))
-//            vc.title = categoryLithuania
-//            navigationController?.pushViewController(vc, animated: true)
-//        }
-    }
-    
-    func filterRegions(bankLocation: [BankPoint], by region: String) -> [BankPoint] {
-        return bankLocation.filter { $0.r == region }
+
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -133,7 +114,7 @@ extension RegionsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let district = sections[indexPath.section].regions[indexPath.row]
-        cell.textLabel?.text = district.name 
+        cell.textLabel?.text = district.name
         return cell
     }
 }
