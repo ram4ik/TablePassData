@@ -9,7 +9,7 @@ import Foundation
 
 struct Api {
     
-    static func getBAvkPointsRequest(country: Country) -> Request {
+    static func getBAvkPointsRequest(country: Country) -> Request<[BankPoint]> {
         
         return .init(url: country.url)
     }

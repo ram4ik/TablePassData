@@ -11,13 +11,6 @@ class RegionsViewController: UIViewController {
     
     var refreshControl = UIRefreshControl()
     
-    private var bankLocationsEstonia: [BankPoint] = []
-    private var regionsEstonia = [String]()
-    private var bankLocationsLatvia: [BankPoint] = []
-    private var regionsLatvia = [String]()
-    private var bankLocationsLithuania: [BankPoint] = []
-    private var regionsLithuania = [String]()
-    
     private var sections = [Section]()
     private var network = Network()
     
@@ -31,10 +24,8 @@ class RegionsViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(tableView)
         reloadData()
-        refreshAllRegions()
         tableView.delegate = self
         tableView.dataSource = self
-        
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
@@ -43,17 +34,11 @@ class RegionsViewController: UIViewController {
     }
     
     @objc func refresh(_ sender: AnyObject) {
-        refreshAllRegions()
+        reloadData()
     }
     
     @objc func update() {
-        refreshAllRegions()
-    }
-    
-    func refreshAllRegions() {
-        self.getDataForEstonia()
-        self.getDataForLatvia()
-        self.getDataForLithuania()
+        reloadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -63,59 +48,41 @@ class RegionsViewController: UIViewController {
     
     func reloadData() {
         let group = DispatchGroup()
+        
         sections.removeAll()
-        for country in Country.allCases {
+        refreshControl.beginRefreshing()
+        defer { refreshControl.endRefreshing() }
+        
+        Country.allCases.forEach { [weak self] country in
+        
             group.enter()
-            network.getPosts(country: country, url: country.url) { (bankLocations, regions) in
-                self.sections.append(Section(country: country, regions: [Region(name: country.name, points: bankLocations)]))
-                group.leave()
+            let request = Api.getBAvkPointsRequest(country: country)
+            network.getPosts(request) { result in
+                
+                defer { group.leave() }
+                
+                guard case .success(let locations) = result else {
+                    return
+                }
+                
+                var regions = [Region]()
+                
+                locations.forEach { point in
+                    
+                    if let district = regions.first(where: { $0.name == point.r }) {
+                        district.points.append(point)
+                    } else {
+                        regions.append(.init(name: point.r ?? "N/A", points: [point]))
+                    }
+                }
+                self?.sections.append(.init(country: country, regions: regions.sorted(by: { $0.name < $1.name })))
             }
         }
-    }
-    
-    func getDataForEstonia() {
-        let nm = Network()
-        nm.getPosts(country: .estonia, url: Country.estonia.url) { (bankLocations, regions) in
-            self.regionsEstonia = regions
-            self.bankLocationsEstonia = bankLocations
-            self.tableView.reloadData()
-        }
-        nm.retriveDataFromJsonFile(Country.estonia.name) { (bankLocations, regions) in
-            self.regionsEstonia = regions
-            self.bankLocationsEstonia = bankLocations
-            self.tableView.reloadData()
-        }
-        refreshControl.endRefreshing()
-    }
-    
-    func getDataForLatvia() {
-        let nm = Network()
-        nm.getPosts(country: .latvia, url: Country.latvia.url) { (bankLocations, regions) in
-            self.regionsLatvia = regions
-            self.bankLocationsLatvia = bankLocations
-            self.tableView.reloadData()
-        }
-        nm.retriveDataFromJsonFile(Country.latvia.name) { (bankLocations, regions) in
-            self.regionsLatvia = regions
-            self.bankLocationsLatvia = bankLocations
-            self.tableView.reloadData()
-        }
-        refreshControl.endRefreshing()
-    }
-    
-    func getDataForLithuania() {
-        let nm = Network()
-        nm.getPosts(country: .lithuania, url: Country.lithuania.url) { (bankLocations, regions) in
-            self.regionsLithuania = regions
-            self.bankLocationsLithuania = bankLocations
-            self.tableView.reloadData()
-        }
-        nm.retriveDataFromJsonFile(Country.lithuania.name) { (bankLocations, regions) in
-            self.regionsLithuania = regions
-            self.bankLocationsLithuania = bankLocations
-            self.tableView.reloadData()
-        }
-        refreshControl.endRefreshing()
+        
+        group.wait()
+        
+        sections.sort(by: { $0.country.name < $1.country.name })
+        tableView.reloadData()
     }
 }
 
@@ -123,22 +90,22 @@ extension RegionsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.section == 0 {
-            let categoryEstonia = regionsEstonia[indexPath.row]
-            let vc = ListViewController(items: filterRegions(bankLocation: bankLocationsEstonia, by: categoryEstonia))
-            vc.title = categoryEstonia
-            navigationController?.pushViewController(vc, animated: true)
-        } else if indexPath.section == 1 {
-            let categoryLatvia = regionsLatvia[indexPath.row]
-            let vc = ListViewController(items: filterRegions(bankLocation: bankLocationsLatvia, by: categoryLatvia))
-            vc.title = categoryLatvia
-            navigationController?.pushViewController(vc, animated: true)
-        } else if indexPath.section == 2 {
-            let categoryLithuania = regionsLithuania[indexPath.row]
-            let vc = ListViewController(items: filterRegions(bankLocation: bankLocationsLithuania, by: categoryLithuania))
-            vc.title = categoryLithuania
-            navigationController?.pushViewController(vc, animated: true)
-        }
+//        if indexPath.section == 0 {
+//            let categoryEstonia = regionsEstonia[indexPath.row]
+//            let vc = ListViewController(items: filterRegions(bankLocation: bankLocationsEstonia, by: categoryEstonia))
+//            vc.title = categoryEstonia
+//            navigationController?.pushViewController(vc, animated: true)
+//        } else if indexPath.section == 1 {
+//            let categoryLatvia = regionsLatvia[indexPath.row]
+//            let vc = ListViewController(items: filterRegions(bankLocation: bankLocationsLatvia, by: categoryLatvia))
+//            vc.title = categoryLatvia
+//            navigationController?.pushViewController(vc, animated: true)
+//        } else if indexPath.section == 2 {
+//            let categoryLithuania = regionsLithuania[indexPath.row]
+//            let vc = ListViewController(items: filterRegions(bankLocation: bankLocationsLithuania, by: categoryLithuania))
+//            vc.title = categoryLithuania
+//            navigationController?.pushViewController(vc, animated: true)
+//        }
     }
     
     func filterRegions(bankLocation: [BankPoint], by region: String) -> [BankPoint] {
@@ -146,21 +113,6 @@ extension RegionsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let label = UILabel()
-//        if section == 0 {
-//            label.text = Country.estonia.name
-//            label.backgroundColor = UIColor.lightGray
-//            return label
-//        } else if section == 1 {
-//            label.text = Country.latvia.name
-//            label.backgroundColor = UIColor.lightGray
-//            return label
-//        } else if section == 2 {
-//            label.text = Country.lithuania.name
-//            label.backgroundColor = UIColor.lightGray
-//            return label
-//        }
-//        return label
         let label = UILabel()
         label.text = sections[section].country.name
         label.backgroundColor = UIColor.lightGray
@@ -175,25 +127,13 @@ extension RegionsViewController: UITableViewDelegate {
 extension RegionsViewController: UITableViewDataSource { 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if section == 0 {
-//            return regionsEstonia.count
-//        } else if section == 1 {
-//            return regionsLatvia.count
-//        } else if section == 2 {
-//            return regionsLithuania.count
-//        }
-//        return 1
-        return sections[section].regions[0].points.count
+        return sections[section].regions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        cell.textLabel?.text = indexPath.section == 0 ? regionsEstonia[indexPath.row] : (indexPath.section == 1 ? regionsLatvia[indexPath.row] : regionsLithuania[indexPath.row])
-//        cell.accessoryType = .disclosureIndicator
-//        return cell
-        
-        let district = sections[indexPath.section].regions[0].points[indexPath.row].r
-        cell.textLabel?.text = district ?? "N/A"
+        let district = sections[indexPath.section].regions[indexPath.row]
+        cell.textLabel?.text = district.name 
         return cell
     }
 }

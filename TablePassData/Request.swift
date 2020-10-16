@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Request {
+class Request<Response: Decodable> {
     
     var request: URLRequest
     
