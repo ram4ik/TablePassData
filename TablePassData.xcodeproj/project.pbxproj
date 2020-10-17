@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1D8D725D2530B54B0018A90D /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D8D725C2530B54B0018A90D /* DetailsViewController.swift */; };
+		1DD40CD5253B616B00A56B4C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD40CD4253B616A00A56B4C /* Utils.swift */; };
 		953EFA3D2538404C009A82AE /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EFA3C2538404C009A82AE /* NetworkRequest.swift */; };
 		953EFA4B25397759009A82AE /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EFA4A25397759009A82AE /* Request.swift */; };
 		953EFA4E253977BC009A82AE /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953EFA4D253977BC009A82AE /* Api.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		1D8D725C2530B54B0018A90D /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		1DD40CD4253B616A00A56B4C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		953EFA3C2538404C009A82AE /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		953EFA4A25397759009A82AE /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		953EFA4D253977BC009A82AE /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
@@ -88,6 +90,14 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		1DD40CD3253B615600A56B4C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1DD40CD4253B616A00A56B4C /* Utils.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		953EFA41253855F0009A82AE /* RegionsViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -132,6 +142,7 @@
 		958D1557253069D400A0389C /* TablePassData */ = {
 			isa = PBXGroup;
 			children = (
+				1DD40CD3253B615600A56B4C /* Utils */,
 				1D60CF342532499D005E47B8 /* Models */,
 				1D60CF3225324946005E47B8 /* ViewsControllers */,
 				1D60CF30253248F7005E47B8 /* Services */,
@@ -218,6 +229,7 @@
 				958D155D253069D400A0389C /* RegionsViewController.swift in Sources */,
 				958D157125307ADB00A0389C /* Country.swift in Sources */,
 				958D157425307B0800A0389C /* BankPoint.swift in Sources */,
+				1DD40CD5253B616B00A56B4C /* Utils.swift in Sources */,
 				953EFA5125397A89009A82AE /* Region.swift in Sources */,
 				1D8D725D2530B54B0018A90D /* DetailsViewController.swift in Sources */,
 				958D157725307B3C00A0389C /* NetworkManager.swift in Sources */,
