@@ -13,6 +13,7 @@ class RegionsViewController: UIViewController {
     
     private var sections = [Section]()
     private var network = Network()
+    private var timeCounter = TimeCounter()
     
     private let tableView: UITableView = {
         let table = UITableView()
@@ -33,8 +34,17 @@ class RegionsViewController: UIViewController {
         let _ = Timer.scheduledTimer(timeInterval: 3600, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        refreshControl.attributedTitle = NSAttributedString(string: timeCounter.canRefresh() ? "Pull to refresh" : "Try in an hour")
+    }
+    
     @objc func refresh(_ sender: AnyObject) {
-        reloadData()
+        if timeCounter.canRefresh() {
+            reloadData()
+            timeCounter.saveCurrentTime()
+        } else {
+            refreshControl.endRefreshing()
+        }
     }
     
     @objc func update() {
