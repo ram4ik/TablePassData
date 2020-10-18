@@ -42,8 +42,6 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.dataSource = self
         
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 470
     }
     
     override func viewDidLayoutSubviews() {
@@ -53,7 +51,19 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        if indexPath.section == 0 {
+                return UITableView.automaticDimension
+            } else {
+                return 60
+            }
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return UITableView.automaticDimension
+        } else {
+            return 60
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,6 +83,11 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.detailTextLabel?.lineBreakMode = .byWordWrapping
         cell.detailTextLabel?.sizeToFit()
         cell.detailTextLabel?.textColor = UIColor.secondaryLabel
+        if indexPath.section == 0 {
+            tableView.rowHeight = 40
+        } else if indexPath.section == 1 {
+            tableView.rowHeight = 70
+        }
         cell.textLabel?.text = getTitleText(titleIndex: indexPath.row, sectionIndex: indexPath.section)
         cell.textLabel?.textColor = UIColor.secondaryLabel
         cell.textLabel?.font = UIFont.systemFont(ofSize: 12.0)
