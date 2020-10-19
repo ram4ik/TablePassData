@@ -35,7 +35,7 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         createArrayWithDetails()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .gray
         view.addSubview(tableView)
 
         tableView.delegate = self

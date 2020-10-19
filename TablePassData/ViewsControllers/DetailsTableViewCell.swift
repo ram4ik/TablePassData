@@ -13,10 +13,10 @@ class DetailsTableViewCell {
         cell.detailTextLabel?.numberOfLines = 0
         cell.detailTextLabel?.lineBreakMode = .byWordWrapping
         cell.detailTextLabel?.sizeToFit()
-        cell.detailTextLabel?.textColor = UIColor.secondaryLabel
+        cell.detailTextLabel?.textColor = UIColor.gray
        
         cell.textLabel?.text = getTitleText(titleIndex: indexPath.row, sectionIndex: indexPath.section)
-        cell.textLabel?.textColor = UIColor.secondaryLabel
+        cell.textLabel?.textColor = UIColor.gray
         cell.textLabel?.font = UIFont.systemFont(ofSize: 12.0)
     }
     

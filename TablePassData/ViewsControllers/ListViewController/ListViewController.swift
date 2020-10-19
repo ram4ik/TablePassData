@@ -28,7 +28,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .gray
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
