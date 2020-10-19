@@ -47,19 +47,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
-        cell.textLabel?.text = items[indexPath.row].n
-        cell.detailTextLabel?.text = items[indexPath.row].a
-        cell.imageView!.image = UIImage(named: (items[indexPath.row].t == 0 ? "br" : (items[indexPath.row].t == 1 ? "a" : "r")))
-        cell.imageView?.translatesAutoresizingMaskIntoConstraints = false
-        let marginguide = cell.contentView.layoutMarginsGuide
-        cell.imageView?.topAnchor.constraint(equalTo: marginguide.topAnchor).isActive = true
-        cell.imageView?.leadingAnchor.constraint(equalTo: marginguide.leadingAnchor).isActive = true
-        cell.imageView?.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        cell.imageView?.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        cell.imageView?.contentMode = .scaleAspectFit
-        cell.imageView?.layer.cornerRadius = 20
-        cell.imageView?.layer.masksToBounds = true
-        cell.accessoryType = .disclosureIndicator
+        let cellView = PointTableViewCell()
+        cellView.configure(cell: cell, item: items[indexPath.row])
         return cell
     }
     
