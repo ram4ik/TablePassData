@@ -79,42 +79,14 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
         var cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell = UITableViewCell(style: .value2, reuseIdentifier: "cell")
         cell.detailTextLabel?.text = indexPath.section == 0 ? details[indexPath.row] : infoDetails[indexPath.row]
-        cell.detailTextLabel?.numberOfLines = 0
-        cell.detailTextLabel?.lineBreakMode = .byWordWrapping
-        cell.detailTextLabel?.sizeToFit()
-        cell.detailTextLabel?.textColor = UIColor.secondaryLabel
+        let cellView = DetailsTableViewCell()
+        cellView.configure(cell: cell, indexPath: indexPath)
         if indexPath.section == 0 {
             tableView.rowHeight = 40
         } else if indexPath.section == 1 {
             tableView.rowHeight = 70
         }
-        cell.textLabel?.text = getTitleText(titleIndex: indexPath.row, sectionIndex: indexPath.section)
-        cell.textLabel?.textColor = UIColor.secondaryLabel
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 12.0)
-        
         return cell
-    }
-    
-    private func getTitleText(titleIndex: Int, sectionIndex: Int) -> String {
-        var titleText = ""
-        if sectionIndex == 0 {
-            if titleIndex == 0 {
-                titleText = "TYPE"
-            } else if titleIndex == 1 {
-                titleText = "NAME"
-            } else if titleIndex == 2 {
-                titleText = "ADDRESS"
-            } else if titleIndex == 3 {
-                titleText = "REGION"
-            }
-        } else if sectionIndex == 1 {
-            if titleIndex == 0 {
-                titleText = "AVAILABILITY"
-            } else if titleIndex == 1 {
-                titleText = "INFO"
-            }
-        }
-        return titleText
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
