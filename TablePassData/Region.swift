@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Region {
+class Region: Codable {
     
     let name: String
     var points: [BankPoint]

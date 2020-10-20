@@ -58,7 +58,7 @@ class RegionsViewController: UIViewController {
     
     func reloadData() {
         let group = DispatchGroup()
-        
+        let storage = Storage()
         sections.removeAll()
         refreshControl.beginRefreshing()
         defer { refreshControl.endRefreshing() }
@@ -92,6 +92,7 @@ class RegionsViewController: UIViewController {
         group.wait()
         
         sections.sort(by: { $0.country.name < $1.country.name })
+        storage.saveData(sections: sections)
         tableView.reloadData()
     }
 }

@@ -27,6 +27,7 @@
 		958D157725307B3C00A0389C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D157625307B3C00A0389C /* NetworkManager.swift */; };
 		958D8E24253D6C0A00815702 /* PointTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D8E23253D6C0A00815702 /* PointTableViewCell.swift */; };
 		958D8E27253D70E900815702 /* DetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D8E26253D70E900815702 /* DetailsTableViewCell.swift */; };
+		958D8E38253EC22800815702 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D8E37253EC22800815702 /* Storage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		958D157625307B3C00A0389C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		958D8E23253D6C0A00815702 /* PointTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointTableViewCell.swift; sourceTree = "<group>"; };
 		958D8E26253D70E900815702 /* DetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewCell.swift; sourceTree = "<group>"; };
+		958D8E37253EC22800815702 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 		958D1557253069D400A0389C /* TablePassData */ = {
 			isa = PBXGroup;
 			children = (
+				958D8E36253EC21400815702 /* Storage */,
 				1DD40CD3253B615600A56B4C /* Utils */,
 				1D60CF342532499D005E47B8 /* Models */,
 				1D60CF3225324946005E47B8 /* ViewsControllers */,
@@ -163,6 +166,14 @@
 				958D1566253069D600A0389C /* Info.plist */,
 			);
 			path = TablePassData;
+			sourceTree = "<group>";
+		};
+		958D8E36253EC21400815702 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				958D8E37253EC22800815702 /* Storage.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +251,7 @@
 				958D155D253069D400A0389C /* RegionsViewController.swift in Sources */,
 				958D157125307ADB00A0389C /* Country.swift in Sources */,
 				958D157425307B0800A0389C /* BankPoint.swift in Sources */,
+				958D8E38253EC22800815702 /* Storage.swift in Sources */,
 				1DD40CD8253B6DC900A56B4C /* TimeCounter.swift in Sources */,
 				1DD40CD5253B616B00A56B4C /* Utils.swift in Sources */,
 				953EFA5125397A89009A82AE /* Region.swift in Sources */,

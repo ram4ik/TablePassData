@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Section {
+struct Section: Codable {
     
     let country: Country
     let regions: [Region]

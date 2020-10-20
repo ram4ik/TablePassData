@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Country: String, CaseIterable {
+enum Country: String, CaseIterable, Codable {
     case estonia
     case latvia
     case lithuania
