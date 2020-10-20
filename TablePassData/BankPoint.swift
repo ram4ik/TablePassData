@@ -12,8 +12,8 @@ struct BankPoint: Codable {
     let t: Int
     let n, a: String
     let av, r: String?
-    let ncash: Bool
+    static let ncash: Bool = false
     let lat, lon: Double
     let i: String?
-    let cs: Bool
+    static let cs: Bool = false
 }
