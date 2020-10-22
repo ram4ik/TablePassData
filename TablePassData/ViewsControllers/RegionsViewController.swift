@@ -62,7 +62,7 @@ class RegionsViewController: UIViewController {
         sections.removeAll()
         refreshControl.beginRefreshing()
         defer { refreshControl.endRefreshing() }
-        
+        var successNetworkRequest = true
         Country.allCases.forEach { [weak self] country in
         
             group.enter()
@@ -72,6 +72,7 @@ class RegionsViewController: UIViewController {
                 defer { group.leave() }
                 
                 guard case .success(let locations) = result else {
+                    successNetworkRequest = false
                     return
                 }
                 
@@ -90,6 +91,12 @@ class RegionsViewController: UIViewController {
         }
         
         group.wait()
+        
+        if !successNetworkRequest {
+            storage.loadData { (loadedSections) in
+                self.sections = loadedSections
+            }
+        }
         
         sections.sort(by: { $0.country.name < $1.country.name })
         storage.saveData(sections: sections)
