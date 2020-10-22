@@ -93,6 +93,12 @@ class DetailsViewController: UIViewController, UITableViewDelegate, UITableViewD
         return 2
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        tableView.reloadData()
+    }
+    
     func createArrayWithDetails() {
         details = [
             (items.t == 0 ? "Branch" : (items.t == 1 ? "ATM" : "BNA")),
